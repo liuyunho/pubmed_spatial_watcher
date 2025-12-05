@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spatial PubMed Papers</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h1>Spatial PubMed Papers</h1>
+
+  <form method="get" action="/papers">
+    <label>
+      Spatial only:
+      <input type="checkbox" name="spatial_only" value="true"
+             {% if spatial_only %}checked{% endif %} />
+    </label>
+    <label>
+      Platform:
+      <input type="text" name="platform" value="{{ platform }}" placeholder="Visium, Xenium..." />
+    </label>
+    <button type="submit">Filter</button>
+  </form>
+
+  <table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Journal</th>
+      <th>Platforms</th>
+      <th>Sample</th>
+      <th>PMID</th>
+    </tr>
+    {% for p in papers %}
+      <tr>
+        <td>{{ p.pub_date }}</td>
+        <td>{{ p.title }}</td>
+        <td>{{ p.journal }}</td>
+        <td>{{ p.platforms }}</td>
+        <td>{{ p.sample_info }}</td>
+        <td><a href="https://pubmed.ncbi.nlm.nih.gov/{{ p.pmid }}/" target="_blank">{{ p.pmid }}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <p><a href="/">Back to dashboard</a></p>
+</body>
+</html>
