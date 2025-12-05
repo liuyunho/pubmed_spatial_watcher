@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spatial PubMed Dashboard</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h1>Spatial PubMed Dashboard</h1>
+  <p>Total papers in DB: {{ total }}</p>
+  <p>Spatial-related papers: {{ spatial }}</p>
+
+  <h2>Latest spatial papers</h2>
+  <ul>
+    {% for p in latest %}
+      <li>
+        <strong>{{ p.pub_date }} – {{ p.title }}</strong><br/>
+        {{ p.journal }} | PMID: {{ p.pmid }}<br/>
+        Platforms: {{ p.platforms }}<br/>
+        Sample: {{ p.sample_info }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="/papers">See all spatial papers</a></p>
+</body>
+</html>
